@@ -5,6 +5,8 @@ export const getModulePrice = (choice, modules, { estamento, convenio }) => {
   if (estamento === 'PUBLICO') price = module?.precio_publico;
   if (estamento === 'COBERTURA') price = module?.precio_cobertura;
   if (convenio === 'RELACION_UNIVALLE') price = module?.precio_univalle;
+  if (convenio === 'red_docente') price = module?.red_docente;
+  if (convenio === 'PARTICULAR') price = module?.precio_particular;
   if (convenio === 'BECADOS') {
     price = 0;
   }
@@ -43,6 +45,7 @@ export const getFileName = (fileKey, doc) => {
   if (fileKey === 'cartaSolicitud') return `${doc}_CARTA_SOLICITUD`;
   if (fileKey === 'actaGrado') return `${doc}_ACTA_GRADO`;
   if (fileKey === 'photo') return `${doc}_FOTO_PERFIL`;
+  if (fileKey === 'carnedocente') return `${doc}_CARNE_DOCENTE`;
   return null;
 };
 

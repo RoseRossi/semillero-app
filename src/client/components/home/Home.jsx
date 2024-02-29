@@ -22,7 +22,7 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [studentData, setStudentData] = useState(null);
-  const [reportData, setReportData] = useState([]);
+  const [reportData, setReportData] = useState({'reporte_': [] , 'total_inscritos': 0});
   const [modules, setModules] = useState([]);
   const [currentPeriod, setCurrentPeriod] = useState(null);
   const [modulesByArea, setModulesByArea] = useState([]);
@@ -155,9 +155,10 @@ export default function Home() {
 
   const fetchReportData = async () => {
     try {
-      const result = await API.getReportData();
-      console.log('result', result);
-      setReportData(result.report);
+      const result = await API.getLenghtModuleActive();
+      if (result !== null) {
+        setReportData(result);
+      }
     } catch (error) {
       errorHandler(error);
     }
@@ -188,6 +189,7 @@ export default function Home() {
     <>
       {showSearchBar && (
         <Navbar
+          sx={{ zIndex: 10}}
           loading={loading}
           handleSearch={handleSearch}
           handleRegister={handleRegister}
